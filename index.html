@@ -104,21 +104,7 @@ footer a{color:inherit;text-decoration:none}
   <div class="story-list" id="story-list"></div>
 </section>
 
-<section class="editor" id="editor">
-  <div class="section-head"><span>Caption Editor</span><span>Your private editing workspace</span></div>
-  <div class="editor-note">
-    Add or change a title and caption for each photograph here. Changes are saved in this browser.
-    To publish them for everyone, use the <strong>Export</strong> button and replace the photo data in this HTML file with the exported data.
-    Your original photographs are never changed.
-  </div>
-  <div class="editor-actions">
-    <button type="button" id="save-edits">Save captions</button>
-    <button type="button" id="export-edits">Export photo data</button>
-    <button type="button" id="reset-edits">Reset local edits</button>
-    <span class="editor-status" id="editor-status"></span>
-  </div>
-  <div class="editor-grid" id="editor-grid"></div>
-</section>
+
 <section class="about" id="about">
   <div class="section-head"><span>About</span><span>Lubna Yusuf · THINK STUDIOS</span></div>
   <div class="about-grid">
@@ -1993,70 +1979,7 @@ function renderStories(){
   });
 }
 
-const editor=document.getElementById('editor'), editorGrid=document.getElementById('editor-grid'), editorStatus=document.getElementById('editor-status');
-const STORAGE_KEY='lubna-yusuf-photo-edits-v1';
-function loadLocalEdits(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');photos.forEach((p,i)=>{if(saved[i])Object.assign(p,saved[i]);});}catch(e){}}
-function renderEditor(){
-  editorGrid.innerHTML='';
-  photos.forEach((p,i)=>{
-    const row=document.createElement('div');row.className='editor-row';
-    const img=document.createElement('img');img.src=p.src;img.alt='Photo '+(i+1);img.loading='lazy';
-    const fields=document.createElement('div');fields.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:10px;';
-    const make=(placeholder,value,tag='input')=>{const x=document.createElement(tag);x.placeholder=placeholder;x.value=value||'';return x;};
-    const title=make('Title',p.title), caption=make('Caption / description (optional)',p.caption,'textarea'), location=make('Location',p.location), year=make('Year',p.year), story=make('Photo story name (optional)',p.story);
-    const bw=document.createElement('label');bw.style.cssText='font:10px Arial;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;';
-    const check=document.createElement('input');check.type='checkbox';check.checked=!!p.blackwhite;bw.append(check,document.createTextNode(' Black & White'));
-    fields.append(title,caption,location,year,story,bw);row.append(img,fields);editorGrid.appendChild(row);
-    [title,caption,location,year,story].forEach(x=>x.addEventListener('input',()=>{p.title=title.value.trim();p.alt=p.title||p.alt;p.caption=caption.value.trim();p.location=location.value.trim();p.year=year.value.trim();p.story=story.value.trim();}));
-    check.addEventListener('change',()=>p.blackwhite=check.checked);
-  });
-}
-document.getElementById('edit-link').addEventListener('click',()=>{editor.classList.toggle('open');if(editor.classList.contains('open')){renderEditor();setTimeout(()=>editor.scrollIntoView({behavior:'smooth'}),20);}});
-document.getElementById('save-edits').addEventListener('click',()=>{
-  const saved={};photos.forEach((p,i)=>saved[i]={title:p.title||'',caption:p.caption||'',location:p.location||'',year:p.year||'',story:p.story||'',storyText:p.storyText||'',blackwhite:!!p.blackwhite});
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));editorStatus.textContent='Saved in this browser.';render(document.querySelector('.filter.active')?.dataset.filter||'all');renderStories();
-});
-document.getElementById('reset-edits').addEventListener('click',()=>{localStorage.removeItem(STORAGE_KEY);location.reload();});
-document.getElementById('export-edits').addEventListener('click',()=>{
-  const blob=new Blob([JSON.stringify(photos,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='lubna-yusuf-photo-data.json';a.click();URL.revokeObjectURL(a.href);editorStatus.textContent='Exported photo data.';
-});
-loadLocalEdits();render();renderStories();document.getElementById('year').textContent=new Date().getFullYear();
-</script> = document.getElementById('gallery');
-const count = document.getElementById('count');
-const archiveTitle = document.getElementById('archive-title');
-let visiblePhotos = photos;
-let current = 0;
-
-function render(filter='all') {
-  gallery.innerHTML = '';
-  visiblePhotos = filter === 'all' ? photos : (filter === 'blackwhite' ? photos.filter(p => p.blackwhite) : photos.filter(p => p.category === filter));
-  count.textContent = `${visiblePhotos.length} photographs`;
-  const names={people:'People & Portraits',street:'Street Life',architecture:'Architecture',nature:'Nature & Landscape',light:'Light & Shadow',details:'Details & Still Life',blackwhite:'Black & White'};
-  archiveTitle.textContent = filter === 'all' ? 'Photographic archive' : names[filter];
-  visiblePhotos.forEach((photo, index) => {
-    const figure = document.createElement('figure');
-    const img = document.createElement('img');
-    img.src = photo.src; img.alt = photo.alt; img.loading = 'lazy'; img.decoding = 'async';
-    figure.appendChild(img);
-    figure.addEventListener('click', () => show(index));
-    gallery.appendChild(figure);
-  });
-}
-document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click', () => {
-  document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render(btn.dataset.filter);
-}));
-
-const box = document.getElementById('lightbox'), big = document.getElementById('lightbox-image');
-function show(i){current=(i+visiblePhotos.length)%visiblePhotos.length;big.src=visiblePhotos[current].src;big.alt=visiblePhotos[current].alt;box.classList.add('open');document.body.style.overflow='hidden'}
-function close(){box.classList.remove('open');document.body.style.overflow=''}
-document.querySelector('.close').onclick=close;
-document.querySelector('.prev').onclick=()=>show(current-1);
-document.querySelector('.next').onclick=()=>show(current+1);
-box.addEventListener('click',e=>{if(e.target===box)close()});
-document.addEventListener('keydown',e=>{if(!box.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(current-1);if(e.key==='ArrowRight')show(current+1)});
-render();
+document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
