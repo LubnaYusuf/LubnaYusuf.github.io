@@ -1,0 +1,2062 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A photographic portfolio and archive of original photographs.">
+<title>LUBNA YUSUF — Photographic Archive</title>
+<style>
+:root{--paper:#f3f0e9;--ink:#22211f;--muted:#77736b;--line:#d8d2c7}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{padding:34px 5.5vw 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.brand{font-family:Georgia,'Times New Roman',serif;font-size:clamp(25px,3vw,40px);letter-spacing:.025em;line-height:1}
+.brand small{display:block;margin-top:9px;font:10px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+nav{display:flex;gap:25px;flex-wrap:wrap}nav a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+nav a:hover{opacity:.55}
+.intro{padding:68px 5.5vw 48px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:end}
+.kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 18px}
+h1{font:normal clamp(34px,5.8vw,76px)/.98 Georgia,'Times New Roman',serif;letter-spacing:-.035em;margin:0;max-width:760px}
+.intro-note{max-width:330px;justify-self:end;color:#625e57;font:14px/1.7 Georgia,serif}
+.section-head{padding:0 5.5vw 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);margin-bottom:24px}
+.section-head span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.gallery{padding:0 5.5vw 80px;columns:3 260px;column-gap:18px}
+figure{margin:0 0 18px;break-inside:avoid;cursor:zoom-in;position:relative}
+figure img{width:100%;height:auto;display:block;background:#e5e0d7;transition:opacity .25s}
+figure:hover img{opacity:.88}
+footer{border-top:1px solid var(--line);padding:28px 5.5vw 38px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+footer a{color:inherit;text-decoration:none}
+.lightbox{position:fixed;inset:0;background:rgba(20,19,17,.96);display:none;align-items:center;justify-content:center;z-index:10;padding:5vh 6vw}
+.lightbox.open{display:flex}.lightbox img{max-width:100%;max-height:90vh;object-fit:contain}
+.close,.prev,.next{position:absolute;background:none;border:0;color:#f3f0e9;font:28px Georgia;cursor:pointer;padding:12px}
+.close{top:16px;right:24px}.prev{left:15px}.next{right:15px}
+@media(max-width:650px){header{align-items:flex-start;flex-direction:column;padding-top:25px}.intro{grid-template-columns:1fr;padding-top:48px;gap:22px}.intro-note{justify-self:start}.gallery{columns:2 140px;column-gap:10px;padding-left:4vw;padding-right:4vw}.section-head{padding-left:4vw;padding-right:4vw}figure{margin-bottom:10px}nav{gap:18px}}
+
+.categories{padding:0 5.5vw 54px}.category-list{display:flex;flex-wrap:wrap;gap:10px 24px;padding:5px 0 0}
+.filter{border:0;background:none;padding:7px 0;color:var(--muted);font:10px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-bottom:1px solid transparent}
+.filter:hover,.filter.active{color:var(--ink);border-bottom-color:var(--ink)}
+.about{padding:20px 0 90px}.about-grid{padding:22px 5.5vw 0;display:grid;grid-template-columns:1fr 1fr;gap:7vw}
+.about h2{font:normal clamp(32px,5vw,64px)/1 Georgia,'Times New Roman',serif;margin:0}
+.about p{max-width:570px;font:15px/1.8 Georgia,serif;color:#625e57;margin-top:0;margin-bottom:18px}
+.about a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink)}
+@media(max-width:650px){.about-grid{grid-template-columns:1fr;gap:25px}.categories{padding-left:4vw;padding-right:4vw}}
+
+.photo-caption{display:none}
+.lightbox-content{max-width:min(1100px,92vw);max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:14px}
+.lightbox-content #lightbox-image{max-width:100%;max-height:78vh}
+.lightbox-caption{width:min(760px,88vw);color:#f3f0e9;text-align:center}
+.lightbox-title{font:normal clamp(22px,3vw,34px)/1.15 Georgia,'Times New Roman',serif;margin-bottom:6px}
+.lightbox-text{font:13px/1.6 Arial,Helvetica,sans-serif;color:#d5d0c7}
+.lightbox-meta{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#a9a39a;margin-top:5px}
+.stories{padding:20px 0 90px}
+.story-list{padding:22px 5.5vw 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px}
+.story-card{border-top:1px solid var(--line);padding-top:16px}
+.story-card h3{font:normal clamp(25px,3vw,42px)/1.05 Georgia,'Times New Roman',serif;margin:0 0 10px}
+.story-card p{font:14px/1.75 Georgia,serif;color:#625e57;margin:0 0 16px;max-width:650px}
+.story-photos{columns:3 180px;column-gap:10px}
+.story-photos figure{margin-bottom:10px}
+.story-photos img{width:100%;display:block}
+.editor{display:none;padding:30px 5.5vw 70px;border-top:1px solid var(--line)}
+.editor.open{display:block}
+.editor-note{font:13px/1.6 Georgia,serif;color:#625e57;max-width:720px;margin-bottom:22px}
+.editor-grid{display:grid;gap:12px}
+.editor-row{display:grid;grid-template-columns:100px 1fr 1fr;gap:10px;align-items:center;border-top:1px solid var(--line);padding:10px 0}
+.editor-row img{width:100px;height:75px;object-fit:cover;background:#e5e0d7}
+.editor-row input,.editor-row textarea{width:100%;border:1px solid var(--line);background:transparent;padding:10px;font:13px Arial,sans-serif;color:var(--ink)}
+.editor-row textarea{min-height:55px;resize:vertical}
+.editor-actions{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0}
+.editor-actions button{border:1px solid var(--ink);background:none;padding:10px 14px;font:10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.editor-status{font:12px Arial,sans-serif;color:var(--muted)}
+@media(max-width:650px){
+.story-list{grid-template-columns:1fr;padding-left:4vw;padding-right:4vw}
+.editor{padding-left:4vw;padding-right:4vw}
+.editor-row{grid-template-columns:70px 1fr}
+.editor-row img{width:70px;height:55px;grid-row:1 / span 2}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">LUBNA YUSUF<small>THINK STUDIOS · PHOTOGRAPHY</small></div>
+  <nav><a href="#work">Work</a><a href="#categories">Categories</a><a href="#stories">Photo Stories</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#editor" id="edit-link">Edit</a><a href="index.html">Public Site</a></nav>
+</header>
+<section class="intro">
+  <div><p class="kicker">THINK STUDIOS · PHOTOGRAPHIC ARCHIVE</p><h1>A Picture of Time</h1></div>
+  <div class="intro-note">Photographs by Lubna Yusuf are observations of people, places, light and the passing moment.</div>
+</section>
+<section class="categories" id="categories">
+  <div class="section-head"><span>Categories</span><span>Selected work</span></div>
+  <div class="category-list">
+    <button class="filter active" data-filter="all">All work</button>
+    <button class="filter" data-filter="people">People &amp; Portraits</button>
+    <button class="filter" data-filter="street">Street Life</button>
+    <button class="filter" data-filter="architecture">Architecture</button>
+    <button class="filter" data-filter="nature">Nature &amp; Landscape</button>
+    <button class="filter" data-filter="light">Light &amp; Shadow</button>
+    <button class="filter" data-filter="details">Details &amp; Still Life</button>
+     <button class="filter" data-filter="blackwhite">Black &amp; White</button>
+  </div>
+</section>
+<div class="section-head" id="work"><span id="archive-title">Photographic archive</span><span id="count">— photographs</span></div>
+<main class="gallery" id="gallery"></main>
+<section class="stories" id="stories">
+  <div class="section-head"><span>Photo Stories</span><span>Photographs with stories</span></div>
+  <div class="story-list" id="story-list"></div>
+</section>
+
+<section class="editor open" id="editor">
+  <div class="section-head"><span>Caption Editor</span><span>Your private editing workspace</span></div>
+  <div class="editor-note">
+    Add or change a title and caption for each photograph here. Changes are saved in this browser.
+    To publish them for everyone, use the <strong>Export</strong> button and replace the photo data in this HTML file with the exported data.
+    Your original photographs are never changed.
+  </div>
+  <div class="editor-actions">
+    <button type="button" id="save-edits">Save captions</button>
+    <button type="button" id="export-edits">Export photo data</button>
+    <button type="button" id="reset-edits">Reset local edits</button>
+    <span class="editor-status" id="editor-status"></span>
+  </div>
+  <div class="editor-grid" id="editor-grid"></div>
+</section>
+<section class="about" id="about">
+  <div class="section-head"><span>About</span><span>Lubna Yusuf · THINK STUDIOS</span></div>
+  <div class="about-grid">
+    <h2>Lubna Yusuf</h2>
+    <div>
+      <p>Author, filmmaker and lawyer, Lubna Yusuf works across creative forms — from poetry and films to photographs, paintings, illustrations and stories.</p>
+      <p>Her photographic practice is an extension of that curiosity: looking closely at people, places, atmosphere and the quiet details that often disappear when we stop paying attention.</p>
+      <p><a href="https://about.me/lubna" target="_blank" rel="noopener">Read more about Lubna →</a></p>
+    </div>
+  </div>
+</section>
+<section class="about" id="contact">
+  <div class="section-head"><span>Contact</span><span>Get in touch</span></div>
+  <div class="about-grid">
+    <h2>Connect</h2>
+    <div>
+      <p>For photography, creative collaborations and enquiries:</p>
+      <p><a href="mailto:thinkstudios.info@gmail.com">thinkstudios.info@gmail.com →</a></p>
+       <p><a href="https://www.instagram.com/iglubna/" target="_blank" rel="noopener">Instagram · @iglubna →</a></p>
+    </div>
+  </div>
+</section>
+<footer><span>© <span id="year"></span> LUBNA YUSUF / THINK STUDIOS · All photographs are original works</span><a href="#top">Back to top ↑</a></footer>
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="close" aria-label="Close">×</button><button class="prev" aria-label="Previous">‹</button>
+  <div class="lightbox-content">
+    <img alt="" id="lightbox-image">
+    <div class="lightbox-caption">
+      <div class="lightbox-title" id="lightbox-title"></div>
+      <div class="lightbox-text" id="lightbox-text"></div>
+      <div class="lightbox-meta" id="lightbox-meta"></div>
+    </div>
+  </div>
+  <button class="next" aria-label="Next">›</button>
+</div>
+<script>
+
+const photos = [
+  {
+    "src": "images/photo-001.jpg",
+    "alt": "Photograph 001",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "Banganga, Mumbai",
+    "year": "",
+    "story": "Faith"
+  },
+  {
+    "src": "images/photo-002.jpg",
+    "alt": "Photograph 002",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "Venice",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-003.jpg",
+    "alt": "Photograph 003",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "St Thomas Church, Fort",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-004.jpg",
+    "alt": "Photograph 004",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Fringe, Edinburgh",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-005.jpg",
+    "alt": "Photograph 005",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Asti, Italy",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-006.jpg",
+    "alt": "Photograph 006",
+    "category": "details",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Castella de Aguada",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-007.jpg",
+    "alt": "Photograph 007",
+    "category": "nature",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Sewri Cemetery",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-008.jpg",
+    "alt": "Photograph 008",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Purushwadi",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-009.jpg",
+    "alt": "Photograph 009",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Purushwadi",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-010.jpg",
+    "alt": "Photograph 010",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Versova",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-011.jpg",
+    "alt": "Photograph 011",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "San Marco, Venice",
+    "year": "",
+    "story": "Treasures"
+  },
+  {
+    "src": "images/photo-012.jpg",
+    "alt": "Photograph 012",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Sewri Flamingo Point",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-013.jpg",
+    "alt": "Photograph 013",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Disney Land, Florida",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-014.jpg",
+    "alt": "Photograph 014",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Gardens by the Bay, Singapore",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-015.jpg",
+    "alt": "Photograph 015",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Clock Tower, Surat",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-016.jpg",
+    "alt": "Photograph 016",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Santacruz",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-017.jpg",
+    "alt": "Photograph 017",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-018.jpeg",
+    "alt": "Photograph 018",
+    "category": "nature",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Rocks Beach",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-019.jpg",
+    "alt": "Photograph 019",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "Singapore",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-020.jpg",
+    "alt": "Photograph 020",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Nepal",
+    "year": "",
+    "story": "Freedom"
+  },
+  {
+    "src": "images/photo-021.jpg",
+    "alt": "Photograph 021",
+    "category": "nature",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Bombay",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-022.jpg",
+    "alt": "Photograph 022",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Portree",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-023.jpg",
+    "alt": "Photograph 023",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "Sewri",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-024.jpg",
+    "alt": "Photograph 024",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Juhu",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-025.jpg",
+    "alt": "Photograph 025",
+    "category": "street",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Nariman Point",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-026.jpg",
+    "alt": "Photograph 026",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "Chor Bazaar, Pydhonie",
+    "year": "",
+    "story": "Treasures"
+  },
+  {
+    "src": "images/photo-027.jpg",
+    "alt": "Photograph 027",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "Venice",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-028.jpg",
+    "alt": "Photograph 028",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Singapore",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-029.jpg",
+    "alt": "Photograph 029",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Backwaters, Kerala",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-030.jpg",
+    "alt": "Photograph 030",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Bihar",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-031.jpeg",
+    "alt": "Photograph 031",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Pali Village",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-032.jpg",
+    "alt": "Photograph 032",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Santacruz",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-033.jpg",
+    "alt": "Photograph 033",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Akola, Maharashtra",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-034.jpg",
+    "alt": "Photograph 034",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Princep Ghat, Kolkata",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-035.jpg",
+    "alt": "Photograph 035",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "Mazagaon, Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-036.jpg",
+    "alt": "Photograph 036",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "Bodh Gaya",
+    "year": "",
+    "story": "Moods"
+  },
+  {
+    "src": "images/photo-037.jpeg",
+    "alt": "Photograph 037",
+    "category": "nature",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Marine Drive",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-038.jpg",
+    "alt": "Photograph 038",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Rome",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-039.jpg",
+    "alt": "Photograph 039",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-040.jpg",
+    "alt": "Photograph 040",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "Bihar",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-041.jpg",
+    "alt": "Photograph 041",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Mahakali Caves",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-042.jpg",
+    "alt": "Photograph 042",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Bihar",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-043.jpg",
+    "alt": "Photograph 043",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Hawa Mahal, Jaipur",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-044.jpg",
+    "alt": "Photograph 044",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "Bandra Fort, Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-045.jpeg",
+    "alt": "Photograph 045",
+    "category": "details",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Versova Koli Village, Mumbai",
+    "year": "",
+    "story": "Treasures"
+  },
+  {
+    "src": "images/photo-046.jpg",
+    "alt": "Photograph 046",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Akola, Maharashra",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-047.jpg",
+    "alt": "Photograph 047",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "",
+    "year": "",
+    "story": "Bokeh"
+  },
+  {
+    "src": "images/photo-048.jpg",
+    "alt": "Photograph 048",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-049.jpeg",
+    "alt": "Photograph 049",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Pali Village",
+    "year": "",
+    "story": "Bokeh"
+  },
+  {
+    "src": "images/photo-050.jpg",
+    "alt": "Photograph 050",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Char Minar, Hyderabad",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-051.jpg",
+    "alt": "Photograph 051",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-052.jpg",
+    "alt": "Photograph 052",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Niagara Falls, Canada",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-053.jpg",
+    "alt": "Photograph 053",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "Venice",
+    "year": "",
+    "story": "Moods"
+  },
+  {
+    "src": "images/photo-054.jpg",
+    "alt": "Photograph 054",
+    "category": "nature",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Sewri",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-055.jpg",
+    "alt": "Photograph 055",
+    "category": "nature",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Madh Island, Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-056.jpg",
+    "alt": "Photograph 056",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-057.jpg",
+    "alt": "Photograph 057",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Asti, Italy",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-058.jpg",
+    "alt": "Photograph 058",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-059.jpeg",
+    "alt": "Photograph 059",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Bandra, Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-060.jpg",
+    "alt": "Photograph 060",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Venice",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-061.jpg",
+    "alt": "Photograph 061",
+    "category": "people",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Sir J. J. School of Art",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-062.jpg",
+    "alt": "Photograph 062",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Pompeii",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-063.jpeg",
+    "alt": "Photograph 063",
+    "category": "street",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Koli Village, Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-064.jpg",
+    "alt": "Photograph 064",
+    "category": "details",
+    "blackwhite": true
+  },
+  {
+    "src": "images/photo-065.jpg",
+    "alt": "Photograph 065",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Victoria Memorial, Calcutta",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-066.jpg",
+    "alt": "Photograph 066",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Immaculate Church, Goa",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-067.jpeg",
+    "alt": "Photograph 067",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Bandra",
+    "year": "",
+    "story": "Bokeh"
+  },
+  {
+    "src": "images/photo-068.jpg",
+    "alt": "Photograph 068",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Mahim Fair",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-069.jpg",
+    "alt": "Photograph 069",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Sentosa Island",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-070.jpg",
+    "alt": "Photograph 070",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "Rocks Beach",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-071.jpg",
+    "alt": "Photograph 071",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Oxford",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-072.jpg",
+    "alt": "Photograph 072",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Oxfordshire",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-073.jpg",
+    "alt": "Photograph 073",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Bolpur, Shantiniketan",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-074.jpg",
+    "alt": "Photograph 074",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-075.jpg",
+    "alt": "Photograph 075",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "St. Augustine",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-076.jpg",
+    "alt": "Photograph 076",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-077.jpg",
+    "alt": "Photograph 077",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Yereven, Armenia",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-078.jpg",
+    "alt": "Photograph 078",
+    "category": "light",
+    "blackwhite": false,
+    "title": "",
+    "caption": "",
+    "location": "Purushwadi",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-079.jpg",
+    "alt": "Photograph 079",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": "Freedom"
+  },
+  {
+    "src": "images/photo-080.jpg",
+    "alt": "Photograph 080",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Rome",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-081.jpg",
+    "alt": "Photograph 081",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "Calcutta",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-082.jpg",
+    "alt": "Photograph 082",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Scotland",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-083.jpg",
+    "alt": "Photograph 083",
+    "category": "street",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-084.jpeg",
+    "alt": "Photograph 084",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-085.jpg",
+    "alt": "Photograph 085",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Edinburgh",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-086.jpg",
+    "alt": "Photograph 086",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Kolkata",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-087.jpg",
+    "alt": "Photograph 087",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Qutub Shahi tombs, Hyderabad",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-088.jpg",
+    "alt": "Photograph 088",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Torino",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-089.jpg",
+    "alt": "Photograph 089",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-090.jpg",
+    "alt": "Photograph 090",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Pushkar",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-091.jpg",
+    "alt": "Photograph 091",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "Pushkar",
+    "year": "",
+    "story": "Faith"
+  },
+  {
+    "src": "images/photo-092.jpg",
+    "alt": "Photograph 092",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Surat",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-093.jpg",
+    "alt": "Photograph 093",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Gardens by the Bay, Singapore",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-094.jpg",
+    "alt": "Photograph 094",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Asti, Italy",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-095.jpeg",
+    "alt": "Photograph 095",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-096.jpg",
+    "alt": "Photograph 096",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Purushwadi",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-097.jpg",
+    "alt": "Photograph 097",
+    "category": "people",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Asti",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-098.jpg",
+    "alt": "Photograph 098",
+    "category": "details",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-099.jpg",
+    "alt": "Photograph 099",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "Bolpur, Shantiniketan",
+    "year": "",
+    "story": "Treasures"
+  },
+  {
+    "src": "images/photo-100.jpg",
+    "alt": "Photograph 100",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": "Freedom"
+  },
+  {
+    "src": "images/photo-101.jpg",
+    "alt": "Photograph 101",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Portree, Scotland",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-102.jpg",
+    "alt": "Photograph 102",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Armenia",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-103.jpg",
+    "alt": "Photograph 103",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-104.jpg",
+    "alt": "Photograph 104",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Akola",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-105.jpg",
+    "alt": "Photograph 105",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Portree",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-107.jpg",
+    "alt": "Photograph 107",
+    "category": "architecture",
+    "blackwhite": false,
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-108.jpg",
+    "alt": "Photograph 108",
+    "category": "people",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Banganga",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-109.jpg",
+    "alt": "Photograph 109",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Akola",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-110.jpg",
+    "alt": "Photograph 110",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Italy",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-111.jpg",
+    "alt": "Photograph 111",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Bandra Worli Sealink",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-112.jpeg",
+    "alt": "Photograph 112",
+    "category": "people",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Versova",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-113.jpg",
+    "alt": "Photograph 113",
+    "category": "street",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Milan",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-114.jpg",
+    "alt": "Photograph 114",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "Versova",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-115.jpg",
+    "alt": "Photograph 115",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Bhutan",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-116.jpg",
+    "alt": "Photograph 116",
+    "category": "nature",
+    "blackwhite": false,
+    "title": "",
+    "caption": "",
+    "location": "Asti",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-117.jpg",
+    "alt": "Photograph 117",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Bhandardara",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-118.jpg",
+    "alt": "Photograph 118",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-119.jpg",
+    "alt": "Photograph 119",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "Venice",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-120.jpg",
+    "alt": "Photograph 120",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Mahim Fair, Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-121.webp",
+    "alt": "Photograph 121",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Toronto, Canada",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-122.jpg",
+    "alt": "Photograph 122",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Mazgaon",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-125.jpg",
+    "alt": "Photograph 125",
+    "category": "details",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Versova",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-126.jpg",
+    "alt": "Photograph 126",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Symphony of the Stones, Garni",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-127.jpg",
+    "alt": "Photograph 127",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "London",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-129.jpg",
+    "alt": "Photograph 129",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Sassoon Dock",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-130.jpg",
+    "alt": "Photograph 130",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Mahim",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-131.jpg",
+    "alt": "Photograph 131",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Hawa Mahal Jaipur",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-132.jpg",
+    "alt": "Photograph 132",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Garden By the Bay, Singapore",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-133.jpg",
+    "alt": "Photograph 133",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "Venice",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-134.jpg",
+    "alt": "Photograph 134",
+    "category": "architecture",
+    "blackwhite": false,
+    "title": "",
+    "caption": "",
+    "location": "Sewri",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-135.jpg",
+    "alt": "Photograph 135",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-136.jpg",
+    "alt": "Photograph 136",
+    "category": "light",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-137.jpg",
+    "alt": "Photograph 137",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "Walkeshwar",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-138.jpg",
+    "alt": "Photograph 138",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "Fort, Gateway of India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-139.jpg",
+    "alt": "Photograph 139",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "221B, Baker Street",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-140.jpg",
+    "alt": "Photograph 140",
+    "category": "nature"
+  },
+  {
+    "src": "images/photo-141.jpg",
+    "alt": "Photograph 141",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Alibagh",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-142.jpg",
+    "alt": "Photograph 142",
+    "category": "details",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-143.jpg",
+    "alt": "Photograph 143",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Asti",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-144.jpg",
+    "alt": "Photograph 144",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Horniman Circle",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-145.jpg",
+    "alt": "Photograph 145",
+    "category": "people",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": "Faith"
+  },
+  {
+    "src": "images/photo-146.jpg",
+    "alt": "Photograph 146",
+    "category": "street",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "Kolkata",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-148.jpg",
+    "alt": "Photograph 148",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Bombay",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-149.jpg",
+    "alt": "Photograph 149",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Bath, UK",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-151.jpg",
+    "alt": "Photograph 151",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Purushwadi",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-152.jpg",
+    "alt": "Photograph 152",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-153.jpg",
+    "alt": "Photograph 153",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Singapore",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-154.jpg",
+    "alt": "Photograph 154",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Bodh Gaya",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-156.jpg",
+    "alt": "Photograph 156",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "New York",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-157.jpg",
+    "alt": "Photograph 157",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Akola",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-158.jpg",
+    "alt": "Photograph 158",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Qutub Shahi Tombs",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-159.jpg",
+    "alt": "Photograph 159",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Miami, Florida",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-160.jpg",
+    "alt": "Photograph 160",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "India",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-161.jpg",
+    "alt": "Photograph 161",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Chapel of the Holy Shroud",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-162.jpeg",
+    "alt": "Photograph 162",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Bandra",
+    "year": "",
+    "story": "Bokeh"
+  },
+  {
+    "src": "images/photo-163.jpeg",
+    "alt": "Photograph 163",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "",
+    "year": "",
+    "story": "Bokeh"
+  },
+  {
+    "src": "images/photo-164.jpg",
+    "alt": "Photograph 164",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Surat",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-165.jpg",
+    "alt": "Photograph 165",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Amer Mahal, Jaipur",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-166.jpg",
+    "alt": "Photograph 166",
+    "category": "architecture",
+    "blackwhite": true,
+    "title": "",
+    "caption": "",
+    "location": "St. Thomas Church, Mumbai",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-167.jpg",
+    "alt": "Photograph 167",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "",
+    "year": "",
+    "story": "Bokeh"
+  },
+  {
+    "src": "images/photo-168.jpg",
+    "alt": "Photograph 168",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "Piazza San Marco, Venice",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-169.jpg",
+    "alt": "Photograph 169",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Hasnabad",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-170.jpg",
+    "alt": "Photograph 170",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Akola",
+    "year": "",
+    "story": "Jugnoo (Fireflies)"
+  },
+  {
+    "src": "images/photo-171.jpg",
+    "alt": "Photograph 171",
+    "category": "architecture",
+    "blackwhite": false
+  },
+  {
+    "src": "images/photo-172.jpg",
+    "alt": "Photograph 172",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "Bombay",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-173.jpg",
+    "alt": "Photograph 173",
+    "category": "people",
+    "blackwhite": false,
+    "title": "",
+    "caption": "",
+    "location": "Juhu Beach",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-174.jpg",
+    "alt": "Photograph 174",
+    "category": "nature",
+    "title": "",
+    "caption": "",
+    "location": "Amherst Street, Calcutta",
+    "year": "",
+    "story": "Freedom"
+  },
+  {
+    "src": "images/photo-175.jpg",
+    "alt": "Photograph 175",
+    "category": "people",
+    "title": "",
+    "caption": "",
+    "location": "",
+    "year": "",
+    "story": "Moods"
+  },
+  {
+    "src": "images/photo-176.jpg",
+    "alt": "Photograph 176",
+    "category": "architecture",
+    "title": "",
+    "caption": "",
+    "location": "Walkeshwar",
+    "year": "",
+    "story": "Faith"
+  },
+  {
+    "src": "images/photo-177.jpg",
+    "alt": "Photograph 177",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "Valley Of Flowers, Kas Plateau",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-178.jpg",
+    "alt": "Photograph 178",
+    "category": "street",
+    "title": "",
+    "caption": "",
+    "location": "",
+    "year": "",
+    "story": "Moods"
+  },
+  {
+    "src": "images/photo-179.jpg",
+    "alt": "Photograph 179",
+    "category": "people",
+    "blackwhite": false,
+    "title": "",
+    "caption": "",
+    "location": "Chor Bazar",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-180.jpg",
+    "alt": "Photograph 180",
+    "category": "light",
+    "blackwhite": false,
+    "title": "",
+    "caption": "",
+    "location": "Baker Street London",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-181.jpg",
+    "alt": "Photograph 181",
+    "category": "light",
+    "title": "",
+    "caption": "",
+    "location": "London",
+    "year": "",
+    "story": ""
+  },
+  {
+    "src": "images/photo-182.jpg",
+    "alt": "Photograph 182",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "Hyderabad",
+    "year": "",
+    "story": "",
+    "blackwhite": true
+  },
+  {
+    "src": "images/photo-183.jpg",
+    "alt": "Photograph 183",
+    "category": "details",
+    "title": "",
+    "caption": "",
+    "location": "Bandstand, Mumbai",
+    "year": "",
+    "story": ""
+  }
+];
+
+const gallery=document.getElementById('gallery'), count=document.getElementById('count'), archiveTitle=document.getElementById('archive-title');
+const storyList=document.getElementById('story-list'), lightbox=document.getElementById('lightbox'), big=document.getElementById('lightbox-image');
+const lightboxTitle=document.getElementById('lightbox-title'), lightboxText=document.getElementById('lightbox-text'), lightboxMeta=document.getElementById('lightbox-meta');
+let visiblePhotos=photos, current=0;
+
+function render(filter='all'){
+  gallery.innerHTML='';
+  visiblePhotos=filter==='all'?photos:(filter==='blackwhite'?photos.filter(p=>p.blackwhite===true):photos.filter(p=>p.category===filter));
+  count.textContent=`${visiblePhotos.length} photographs`;
+  const names={people:'People & Portraits',street:'Street Life',architecture:'Architecture',nature:'Nature & Landscape',light:'Light & Shadow',details:'Details & Still Life',blackwhite:'Black & White'};
+  archiveTitle.textContent=filter==='all'?'Photographic archive':names[filter];
+  visiblePhotos.forEach((photo,index)=>{
+    const figure=document.createElement('figure'), img=document.createElement('img');
+    img.src=photo.src; img.alt=photo.title||photo.alt||''; img.loading='lazy'; img.decoding='async';
+    figure.appendChild(img); figure.addEventListener('click',()=>show(index)); gallery.appendChild(figure);
+  });
+}
+function show(i){
+  if(!visiblePhotos.length)return;
+  current=(i+visiblePhotos.length)%visiblePhotos.length; const p=visiblePhotos[current];
+  big.src=p.src; big.alt=p.title||p.alt||''; lightboxTitle.textContent=p.title||''; lightboxText.textContent=p.caption||'';
+  const parts=[]; if(p.location)parts.push(p.location); if(p.year)parts.push(p.year); if(p.story)parts.push(p.story);
+  lightboxMeta.textContent=parts.join(' · ');
+  lightboxTitle.style.display=p.title?'block':'none'; lightboxText.style.display=p.caption?'block':'none'; lightboxMeta.style.display=parts.length?'block':'none';
+  lightbox.classList.add('open'); document.body.style.overflow='hidden';
+}
+function closeLightbox(){lightbox.classList.remove('open');document.body.style.overflow='';}
+document.querySelector('.close').onclick=closeLightbox; document.querySelector('.prev').onclick=()=>show(current-1); document.querySelector('.next').onclick=()=>show(current+1);
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox();});
+document.addEventListener('keydown',e=>{if(!lightbox.classList.contains('open'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')show(current-1);if(e.key==='ArrowRight')show(current+1);});
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render(btn.dataset.filter);}));
+
+function renderStories(){
+  storyList.innerHTML=''; const stories={};
+  photos.forEach((p,i)=>{if(p.story){if(!stories[p.story])stories[p.story]={title:p.story,text:p.storyText||'',photos:[]};stories[p.story].photos.push({...p,index:i});}});
+  const entries=Object.values(stories);
+  if(!entries.length){storyList.innerHTML='<div class="story-card"><h3>Your stories will appear here</h3><p>Add the same <strong>story</strong> name to photographs in the Caption Editor to group them into a visual story.</p></div>';return;}
+  entries.forEach(story=>{
+    const card=document.createElement('article');card.className='story-card';
+    const h=document.createElement('h3');h.textContent=story.title;card.appendChild(h);
+    if(story.text){const p=document.createElement('p');p.textContent=story.text;card.appendChild(p);}
+    const grid=document.createElement('div');grid.className='story-photos';
+    story.photos.forEach(photo=>{const fig=document.createElement('figure'),img=document.createElement('img');img.src=photo.src;img.alt=photo.title||photo.alt||'';img.loading='lazy';fig.appendChild(img);fig.addEventListener('click',()=>{visiblePhotos=story.photos;show(story.photos.findIndex(x=>x.index===photo.index));});grid.appendChild(fig);});
+    card.appendChild(grid);storyList.appendChild(card);
+  });
+}
+
+const editor=document.getElementById('editor'), editorGrid=document.getElementById('editor-grid'), editorStatus=document.getElementById('editor-status');
+const STORAGE_KEY='lubna-yusuf-photo-edits-v1';
+function loadLocalEdits(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');photos.forEach((p,i)=>{if(saved[i])Object.assign(p,saved[i]);});}catch(e){}}
+function renderEditor(){
+  editorGrid.innerHTML='';
+  photos.forEach((p,i)=>{
+    const row=document.createElement('div');row.className='editor-row';
+    const img=document.createElement('img');img.src=p.src;img.alt='Photo '+(i+1);img.loading='lazy';
+    const fields=document.createElement('div');fields.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:10px;';
+    const make=(placeholder,value,tag='input')=>{const x=document.createElement(tag);x.placeholder=placeholder;x.value=value||'';return x;};
+    const title=make('Title',p.title), caption=make('Caption / description (optional)',p.caption,'textarea'), location=make('Location',p.location), year=make('Year',p.year), story=make('Photo story name (optional)',p.story);
+    const bw=document.createElement('label');bw.style.cssText='font:10px Arial;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;';
+    const check=document.createElement('input');check.type='checkbox';check.checked=!!p.blackwhite;bw.append(check,document.createTextNode(' Black & White'));
+    fields.append(title,caption,location,year,story,bw);row.append(img,fields);editorGrid.appendChild(row);
+    [title,caption,location,year,story].forEach(x=>x.addEventListener('input',()=>{p.title=title.value.trim();p.alt=p.title||p.alt;p.caption=caption.value.trim();p.location=location.value.trim();p.year=year.value.trim();p.story=story.value.trim();}));
+    check.addEventListener('change',()=>p.blackwhite=check.checked);
+  });
+}
+document.getElementById('edit-link').addEventListener('click',()=>{editor.classList.toggle('open');if(editor.classList.contains('open')){renderEditor();setTimeout(()=>editor.scrollIntoView({behavior:'smooth'}),20);}});
+document.getElementById('save-edits').addEventListener('click',()=>{
+  const saved={};photos.forEach((p,i)=>saved[i]={title:p.title||'',caption:p.caption||'',location:p.location||'',year:p.year||'',story:p.story||'',storyText:p.storyText||'',blackwhite:!!p.blackwhite});
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));editorStatus.textContent='Saved in this browser.';render(document.querySelector('.filter.active')?.dataset.filter||'all');renderStories();
+});
+document.getElementById('reset-edits').addEventListener('click',()=>{localStorage.removeItem(STORAGE_KEY);location.reload();});
+document.getElementById('export-edits').addEventListener('click',()=>{
+  const blob=new Blob([JSON.stringify(photos,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='lubna-yusuf-photo-data.json';a.click();URL.revokeObjectURL(a.href);editorStatus.textContent='Exported photo data.';
+});
+loadLocalEdits();render();renderStories();document.getElementById('year').textContent=new Date().getFullYear();
+</script> = document.getElementById('gallery');
+const count = document.getElementById('count');
+const archiveTitle = document.getElementById('archive-title');
+let visiblePhotos = photos;
+let current = 0;
+
+function render(filter='all') {
+  gallery.innerHTML = '';
+  visiblePhotos = filter === 'all' ? photos : (filter === 'blackwhite' ? photos.filter(p => p.blackwhite) : photos.filter(p => p.category === filter));
+  count.textContent = `${visiblePhotos.length} photographs`;
+  const names={people:'People & Portraits',street:'Street Life',architecture:'Architecture',nature:'Nature & Landscape',light:'Light & Shadow',details:'Details & Still Life',blackwhite:'Black & White'};
+  archiveTitle.textContent = filter === 'all' ? 'Photographic archive' : names[filter];
+  visiblePhotos.forEach((photo, index) => {
+    const figure = document.createElement('figure');
+    const img = document.createElement('img');
+    img.src = photo.src; img.alt = photo.alt; img.loading = 'lazy'; img.decoding = 'async';
+    figure.appendChild(img);
+    figure.addEventListener('click', () => show(index));
+    gallery.appendChild(figure);
+  });
+}
+document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render(btn.dataset.filter);
+}));
+
+const box = document.getElementById('lightbox'), big = document.getElementById('lightbox-image');
+function show(i){current=(i+visiblePhotos.length)%visiblePhotos.length;big.src=visiblePhotos[current].src;big.alt=visiblePhotos[current].alt;box.classList.add('open');document.body.style.overflow='hidden'}
+function close(){box.classList.remove('open');document.body.style.overflow=''}
+document.querySelector('.close').onclick=close;
+document.querySelector('.prev').onclick=()=>show(current-1);
+document.querySelector('.next').onclick=()=>show(current+1);
+box.addEventListener('click',e=>{if(e.target===box)close()});
+document.addEventListener('keydown',e=>{if(!box.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(current-1);if(e.key==='ArrowRight')show(current+1)});
+render();
+</script>
+</body>
+</html>
